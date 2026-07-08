@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hirav Kadikar × MProfit — Project Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0C0C0E;
+    --surface: #111114;
+    --panel: #17171B;
+    --border: #222228;
+    --muted: #3A3A42;
+    --text-dim: #888896;
+    --text-body: #C8C8D4;
+    --text-head: #F0F0F8;
+    --gold: #C9A84C;
+    --gold-light: #E8C87A;
+    --gold-dim: rgba(201, 168, 76, 0.12);
+    --gold-line: rgba(201, 168, 76, 0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text-body);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 48px;
+    background: rgba(12,12,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-pair {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .logo-pair img {
+    height: 20px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+  }
+
+  .logo-pair span.divider {
+    width: 18px;
+    height: 1px;
+    background: var(--gold-line);
+    display: inline-block;
+  }
+
+  .logo-pair span.cross {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    text-transform: none;
+  }
+
+  .logo-pair strong { color: var(--gold); font-weight: 500; letter-spacing: 0.1em; }
+
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold);
+    display: block;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 84px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text-head);
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero h1 .cross-symbol {
+    color: var(--gold);
+    font-style: italic;
+    padding: 0 6px;
+  }
+
+  .hero-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 48px;
+    max-width: 640px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .meta-item span {
+    font-size: 14px;
+    color: var(--text-head);
+    font-weight: 400;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 96px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--text-head);
+    line-height: 1.15;
+    margin-bottom: 28px;
+  }
+
+  h2 em { font-style: italic; color: var(--gold-light); }
+
+  p { color: var(--text-body); line-height: 1.8; margin-bottom: 20px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin: 64px 0;
+    border: 1px solid var(--border);
+  }
+
+  .stat-cell {
+    padding: 36px 28px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── ACCESS GRID (strategic access & partnerships) ── */
+  .access-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 44px;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+
+  .access-card {
+    padding: 32px 28px;
+    background: var(--panel);
+    position: relative;
+    transition: background 0.2s ease;
+  }
+
+  .access-card:hover { background: #1B1B20; }
+
+  .access-card--featured {
+    background: linear-gradient(180deg, var(--gold-dim), var(--panel) 55%);
+    border-top: 2px solid var(--gold);
+  }
+
+  .access-icon {
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+
+  .access-card h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-head);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .access-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  .access-callout {
+    margin-top: 2px;
+    padding: 36px 40px;
+    background: var(--panel);
+    border-left: 2px solid var(--gold);
+  }
+
+  .access-callout-label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .access-callout p {
+    color: var(--text-body);
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  /* ── PIPELINE ── */
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin: 48px 0;
+    border: 1px solid var(--border);
+  }
+
+  .pipeline-step {
+    padding: 28px 20px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+
+  .pipeline-step:last-child { border-right: none; }
+
+  .pipe-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .pipe-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-head);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ── TABLE ── */
+  .revenue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+  }
+
+  .revenue-table th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .revenue-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-body);
+    font-size: 14px;
+  }
+
+  .revenue-table tr:last-child td { border-bottom: none; }
+
+  .revenue-table tr:hover td { background: var(--panel); }
+
+  .revenue-table .highlight td {
+    background: var(--gold-dim);
+    color: var(--text-head);
+  }
+
+  .revenue-table .highlight td:first-child {
+    border-left: 2px solid var(--gold);
+  }
+
+  td.val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+
+  .table-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* ── NETWORK TAGS ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .tag {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    background: var(--panel);
+    white-space: nowrap;
+  }
+
+  /* ── ROLES ── */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .role-card {
+    padding: 32px 28px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+  }
+
+  .role-card h4 {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-head);
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .role-card p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 56px 64px;
+    margin: 48px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 240px;
+    color: var(--gold);
+    opacity: 0.04;
+    position: absolute;
+    top: -40px; left: 32px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .closing p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-head);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .closing p strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .footer-left img {
+    height: 14px;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+
+  .footer-left strong { color: var(--text-body); font-weight: 500; }
+
+  .footer-right {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ── DIVIDER FULL ── */
+  .full-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 14px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 64px 24px; }
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .access-grid { grid-template-columns: 1fr; }
+    .pipeline { grid-template-columns: repeat(2, 1fr); }
+    .roles-grid { grid-template-columns: 1fr; }
+    .closing { padding: 36px 28px; }
+    .access-callout { padding: 28px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  @media (max-width: 540px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .hero-meta { gap: 24px; }
+  }
+
+  /* ── FADE IN ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero > *:nth-child(5) { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-pair">
+    <strong>Hirav Kadikar</strong>
+    <span class="cross">×</span>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAABuCAMAAADh7A15AAABMlBMVEUCK1T///8hnEiBlapBYH/AytSQzqQFXSwcgjvI5tFZtXYcgzwHYS7G4M4aeTcGXy0adzYHYi4bfjkTfToFXiwIYy8GYC0bfDgbfTkbfzqOwZ5VoWwadjUYdDUXczQVcTMaeDYaejcaezgbezgcgTsRbTIOajEMaDAHYC4MbTMZdjUIYi8bejhEhmEajEHG3c3B2MscgDobgDocgjxVom0YdDQWcjQUcDQTbzMTbzISbjIPazENaTELZzAKZjAJZTAJZS8bfDkZdzYUbzMTbjMSbTIQazIQazEPajEOaTELZjAKZTAJZC8GXi0FXyxTm2lTmGhEiWJSpW9TmmhLlWhEiGKItpmFs5jE28zC2cuLuJqEsZfE2szB18obfzkafTgcfzobgTpVn2scgDsbgTuOwZ2yPNXQAAAAkGVYSWZNTQAqAAAACAAFARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAAhMAAwAAAAEAAQAAh2kABAAAAAEAAABaAAAAAAAAAJAAAAABAAAAkAAAAAEABJAAAAcAAAAEMDIzMpEBAAcAAAAEAQIDAKAAAAcAAAAEMDEwMKABAAMAAAABAAEAAAAAAACfLQRSAAAE0klEQVR42u3aZ3ujOBAAYMRowLjFySXZZFM32XZbbsvt9d57773//79w4KxtkEZiiGWbPDv6FCdkgNfSSBqIlLRSi4RAOIRDOIRDOIRDOIRDOIRDOIRDOIRDOIRDOIRDOIRDOIRDOKQJh3AIh3AIh3AIh3AIh3BcCA7UwIyVJUnpE+hqg7zhAu4AYRJ/esGzn9X07IE4IMobK1gW5y2bRSZb25bZdDn27IIjjaUP078F4uB4JIVG3K3h4Noye4aOTA4gbAJyTMIhSyOO6znCeaDR8yrdBRfJUXMTWTfmc3CvTbGvrRSW7iuhOJD1pWbxtGUMjkAeQETFpXG4QyZxQ44w4yXy9g5YBAcw7qKsQXFg3gAqWS8Kmzk0Yj7hYiV3LIGD9OiWNeLE5qBiYcixAgQSqCVw2GGzOOZyVL7PgEsOTVyxVkvhMDtIYmjMFh7UwICQ3UO7umw+MFEthkP706Cl4edQITk4eXkJHKXQXUsj/trLoQ0OhMft7BMCWPeGZ8egm0NXYkwiGsuw8jHn5/DNk5mNET+VMjmgmkxwuuIG1yrc3O5YV6U8MwuzU56PY3yuhNB4Oj03B9hdH7x5q0UcEanxzN003WwyWEocYN8yMVDLW6cVcKCzd3SpgZJurt283yCVljisHuA4NbaPQ2NGa6Sfb/fv8yZaI7y2OFz9ElfIAfQGjBgo3TxtbG73b2/95OEwZyd0b2d07favJRxApo20GCn99U9vfO/kKE8TUMNRObEm82k7OFxpI1272d/65Pp7P9McWK1c0WNR68ndmtmT2O+Y6w70cgBwirUNOACcaePbQmO7v/769ZePvmywwUfXNArW2LD3O/T0u9Adra5+oUCnjey39LN8oGy99v6Lh/vfcDioTA3+xTya/716jrzZGsUe9u7a9vrWjQ/eOdwffcHgQIID6vbu5gJ/BRx2Rk8oDfVd//Ybr147OhgNr1yq58C60iP4BxC0h0Ml1dxxVv36av3Nj64dPff28ZWTnToOTS5rHKcl10C6BRxA7eon2/lfPv7w3ef3R8PTtzYe+DkqTyjQsUlvKQfWlDmmpa8fXnnp8NZoeHJpY/fqwMNhPK5xcCBdNDOQ2sPx2GP2SPbXFw5Gx3dOd3avdnoWx/QhLbrj44XmKEC6s+ex6seDW8fDkz9+f9jpdAaeDn+xOdi173uj4Z1ioDzb6/UuC8e9fILd2P0r7xudPfVEcPjjnO78+aDTm/WNuTjaOrNoNsfOxsN/O+PEMSlphuHANi3D+Bx//1OkjUcDtLcU5+DQ1GhZPQf/qepe0TX+Ozv9/Bzorx3xt3DY8KEwm6OG99E4bUAUnAMcRfimHLhUjr3O3mBS4MG5OZT2FQuRz6HMauQ81TDkv5ExuDw7OgBHtRAClUoaqAYcurI4rh00oTjKmS4AB12zroZringsIbE4eXkJHKXQXUsj/trLoQ0OhMft7BMCWPeGZ8egm0NXYkwiGsuw8jHn5/DNk5mNET+VMjmgmkxwuuIG1yrc3O5YV6U8MwuzU56PY3yuhNB4Oj03B9hdH7x5q0UcEanxzN003WwyWEocYN8yMVDLW6cVcKCzd3SpgZJurt283yCVljisHuA4NbaPQ2NGa6Sfb/fv8yZaI7y2OFz9ElfIAfQGjBgo3TxtbG73b2/95OEwZyd0b2d07favJRxApo20GCn99U9vfO/kKE8TUMNRObEm82k7OFxpI1272d/65Pp7P9McWK1c0WNR68ndmtmT2O+Y6w70cgBwirUNOACcaePbQmO7v/769ZePvmywwUfXNArW2LD3O/T0u9Adra5+oUCnjey39LN8oGy99v6Lh/vfcDioTA3+xTya/716jrzZGsUe9u7a9vrWjQ/eOdwffcHgQIID6vbu5gJ/BRx2Rk8oDfVd//Ybr147OhgNr1yq58C60iP4BxC0h0Ml1dxxVv36av3Nj64dPff28ZWTnToOTS5rHKcl10C6BRxA7eon2/lfPv7w3ef3R8PTtzYe+DkqTyjQsUlvKQfWlDmmpa8fXnnp8NZoeHJpY/fqwMNhPK5xcCBdNDOQ2sPx2GP2SPbXFw5Gx3dOd3avdnoWx/QhLbrj44XmKEC6s+ex6seDW8fDkz9+f9jpdAaeDn+xOdi173uj4Z1ioDzb6/UuC8e9fILd2P0r7xudPfVEcPjjnO78+aDTm/WNuTjaOrNoNsfOxsN/O+PEMSlphuHANi3D+Bx//1OkjUcDtLcU5+DQ1GhZPQf/qepe0TX+Ozv9/Bzorx3xt3DY8KEwm6OG99E4bUAUnAMcRfimHLhUjr3O3mBS4MG5OZT2FQuRz6HMauQ81TDkv5ExuDw7OgBHtRAClUoaqAYcurI4rh00oTjKmS4AB12zroZringsIbE4eXkJHKXQXUsj/trLoQ0OhMft7BMCWPeGZ8egm0NXYkwiGsuw8jHn5/DNk5mNET+VMjmgmkxwuuIG1yrc3O5YV6U8MwuzU56PY3yuhNB4Oj03B9hdH7x5q0UcEanxzN003WwyWEocYN8yMVDLW6cVcKCzd3SpgZJurt283yCVljisHuA4NbaPQ2NGa6Sfb/fv8yZaI7y2OFz9ElfIAfQGjBgo3TxtbG73b2/95OEwZyd0b2d07favJRxApo20GCn99U9vfO/kKE8TUMNRObEm82k7OFxpI1272d/65Pp7P9McWK1c0WNR68ndmtmT2O+Y6w70cgBwirUNOACcaePbQmO7v/769ZePvmywwUfXNArW2LD3O/T0u9Adra5+oUCnjey39LN8oGy99v6Lh/vfcDioTA3+xTya/716jrzZGsUe9u7a9vrWjQ/eOdwffcHgQIID6vbu5gJ/BRx2Rk8oDfVd//Ybr147OhgNr1yq58C60iP4BxC0h0Ml1dxxVv36av3Nj64dPff28ZWTnToOTS5rHKcl10C6BRxA7eon2/lfPv7w3ef3R8PTtzYe+DkqTyjQsUlvKQfWlDmmpa8fXnnp8NZoeHJpY/fqwMNhPK5xcCBdNDOQ2sPx2GP2SPbXFw5Gx3dOd3avdnoWx/QhLbrj44XmKEC6s+ex6seDW8fDkz9+f9jpdAaeDn+xOdi173uj4Z1ioDzb6/UuC8e9fILd2P0r7xudPfVEcPjjnO78+aDTm/WNuTjaOrNoNsfOxsN/O+PEMSlphuHANi3D+Bx//1OkjUcDtLcU5+DQ1GhZPQf/qepe0TX+Ozv9/Bzorx3xt3DY8KEwm6OG99E4bUAUnAMcRfimHLhUjr3O3mBS4MG5OZT2FQuRz6HMauQ81TDkv5ExuDw7OgBHtRAClUoaqAYcurI4rh00oTjKmS4AB12zroZringsIbE4eXkJHKXQXUsj/trLoQ0OhMft7BMCWPeGZ8egm0NXYkwiGsuw8jHn5/DNk5mNET+VMjmgmkxwuuIG1yrc3O5YV6U8MwuzU56PY3yuhNB4Oj03B9hdH7x5q0UcEanxzN003WwyWEocYN8yMVDLW6cVcKCzd3SpgZJurt283yCVljisHuA4NbaPQ2NGa6Sfb/fv8yZaI7y2OFz9ElfIAfQGjBgo3TxtbG73b2/95OEwZyd0b2d07favJRxApo20GCn99U9vfO/kKE8TUMNRObEm82k7OFxpI1272d/65Pp7P9McWK1c0WNR68ndmtmT2O+Y6w70cgBwirUNOACcaePbQmO7v/769ZePvmywwUfXNArW2LD3O/T0u9Adra5+oUCnjey39LN8oGy99v6Lh/vfcDioTA3+xTya/716jrzZGsUe9u7a9vrWjQ/eOdwffcHgQIID6vbu5gJ/BRx2Rk8oDfVd//Ybr147OhgNr1yq58C60iP4BxC0h0Ml1dxxVv36av3Nj64dPff28ZWTnToOTS5rHKcl10C6BRxA7eon2/lfPv7w3ef3R8PTtzYe+DkqTyjQsUlvKQfWlDmmpa8fXnnp8NZoeHJpY/fqwMNhPK5xcCBdNDOQ2sPx2GP2SPbXFw5Gx3dOd3avdnoWx/QhLbrj44XmKEC6s+ex6seDW8fDkz9+f9jpdAaeDn+xOdi173uj4Z1ioDzb6/UuC8e9fILd2P0r7xudPfVEcPjjnO78+aDTm/WNuTjaOrNoNsfOxsN/O+PEMSlphuHANi3D+Bx//1OkjUcDtLcU5+DQ1GhZPQf/qepe0TX+Ozv9/Bzorx3xt3DY8KEwm6OG99E4bUAUnAMcRfimHLhUjr3O3mBS4MG5OZT2FQuRz6HMauQ81TDkv5ExuDw7OgBHtRAClUoaqAYcurI4rh00oTjKmS4AB12zroZringsIbE4eXkJHKXQXUsj/trLoQ0OhMft7BMCWPeGZ8egm0NXYkwiGsuw8jHn5/DNk5mNET+VMjmgmkxwuuIG1yrc3O5YV6U8MwuzU56PY3yuhNB4Oj03B9hdH7x5q0UcEanxzN003WwyWEocYN8yMVDLW6cVcKCzd3SpgZJurt283yCVljisHuA4NbaPQ2NGa6Sfb/fv8yZaI7y2OFz9ElfIAfQGjBgo3TxtbG73b2/95OEwZyd0b2d07favJRxApo20GCn99U9vfO/kKE8TUMNRObEm82k7OFxpI1272d/65Pp7P9McWK1c0WNR68ndmtmT2O+Y6w70cgBwirUNOACcaePbQmO7v/769ZePvmywwUfXNArW2LD3O/T0u9Adra5+oUCnjey39LN8oGy99v6Lh/vfcDioTA3+xTya/716jrzZGsUe9u7a9vrWjQ/eOdwffcHgQIID6vbu5gJ/BRx2Rk8oDfVd//Ybr147OhgNr1yq58C60iP4BxC0h0Ml1dxxVv36av3Nj64dPff28ZWTnToOTS5rHKcl10C6BRxA7eon2/lfPv7w3ef3R8PTtzYe+DkqTyjQsUlvKQfWlDmmpa8.jpg" alt="MProfit">
+  </div>
+  <div class="header-tag">Project Atlas · Strategic Partnership &amp; Hiring Proposal</div>
+</header>
+
+<!-- HERO -->
+<div class="hero" style="max-width:100%; margin:0;">
+  <div class="hero-eyebrow">Confidential · Strategic Initiative</div>
+  <h1>Hirav Kadikar<span class="cross-symbol">×</span><em>MProfit</em></h1>
+  <div class="hero-kicker">Project Atlas</div>
+  <div class="hero-subtitle">Building MProfit's HNI Acquisition &amp; Strategic Partnerships Engine — together, from day one.</div>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <label>Prepared by</label>
+      <span>Hirav Kadikar</span>
+    </div>
+    <div class="meta-item">
+      <label>Submitted to</label>
+      <span>MProfit Leadership</span>
+    </div>
+    <div class="meta-item">
+      <label>Nature</label>
+      <span>Strategic Partnership &amp; Full-Time Role</span>
+    </div>
+    <div class="meta-item">
+      <label>Classification</label>
+      <span>Confidential</span>
+    </div>
+  </div>
+</div>
+
+<hr class="full-rule">
+
+<!-- EXECUTIVE SUMMARY -->
+<section>
+  <div class="section-label">01 — Executive Summary</div>
+  <div class="two-col">
+    <div>
+      <h2>The next phase of MProfit's growth is <em>access</em>.</h2>
+    </div>
+    <div>
+      <p>MProfit has built India's most trusted platform for portfolio reporting, wealth accounting, and family office management. The product is exceptional. The opportunity ahead is not just product innovation — it is consistent, structured access to the right clients.</p>
+      <p>This proposal outlines a long-term collaboration to build a dedicated acquisition engine focused on HNIs, UHNWIs, founders, business owners, family offices, and senior decision-makers who align with MProfit's premium offerings.</p>
+      <p>I already have this — not in theory, but in hand: a working database and a set of live, personal relationships across exactly the communities MProfit is trying to reach. The objective of this proposal is to bring that access inside MProfit, as an embedded function, and build it into a compounding, repeatable acquisition system alongside the team.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- DATABASE -->
+<section>
+  <div class="section-label">02 — Existing Foundation</div>
+  <h2>A structured intelligence<br><em>database</em>, built over years.</h2>
+
+  <div class="stats-row">
+    <div class="stat-cell">
+      <div class="stat-num">20K+</div>
+      <div class="stat-label">Verified Records</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Industries Covered</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">100+</div>
+      <div class="stat-label">Cities Represented</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Long-Term Potential</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p>Over the past several years, I have built and organised a growing database of business contacts spanning India's entire entrepreneurial, investment, and ultra-high-net-worth ecosystem.</p>
+      <p>Each record captures — where available — name, company, designation, industry, location, contact information, and company context. The value is not in the volume alone, but in the ability to organise, prioritise, and activate these records into meaningful opportunities for MProfit.</p>
+      <p>This is not a purchased list. Every contact has been acquired through direct engagement, network building, and industry presence — which means the relationships are real and the data is current.</p>
+    </div>
+    <div>
+      <p>The database already contains verified profiles across:</p>
+      <div class="tags">
+        <span class="tag">Bollywood Celebrities</span>
+        <span class="tag">Cricketers</span>
+        <span class="tag">Entertainment Industry</span>
+        <span class="tag">Venture Capitalists</span>
+        <span class="tag">Luxury Home Owners</span>
+        <span class="tag">Malabar Hill Residents</span>
+        <span class="tag">HNI Investors</span>
+        <span class="tag">Family Offices</span>
+        <span class="tag">Founders &amp; Promoters</span>
+        <span class="tag">Business Owners</span>
+        <span class="tag">Senior Executives</span>
+        <span class="tag">Automotive Leaders</span>
+        <span class="tag">Finance &amp; Advisory</span>
+        <span class="tag">Real Estate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- STRATEGIC ACCESS -->
+<section>
+  <div class="section-label">03 — Strategic Access &amp; Partnerships</div>
+  <h2>Beyond the database —<br><em>direct access</em> to India's wealthiest communities.</h2>
+  <p style="max-width:700px;">What separates this proposal from any conventional lead generation effort is the quality and exclusivity of relationships I already hold, personally. These are not cold introductions — they are warm, trusted channels into communities where MProfit's ideal clients already live.</p>
+
+  <div class="access-grid">
+
+    <div class="access-card access-card--featured">
+      <div class="access-icon">◈</div>
+      <h4>Private Clubs — Ahmedabad, Mumbai &amp; Pune</h4>
+      <p>Direct contacts within some of India's most exclusive private member clubs across three major cities. These clubs represent a concentrated pool of ultra-high-net-worth individuals actively managing significant personal and family wealth — precisely MProfit's premium segment.</p>
+    </div>
+
+    <div class="access-card">
+      <div class="access-icon">◈</div>
+      <h4>Karan Bhangey — Indulge Concierge, Goa</h4>
+      <p>A direct, personal relationship with Karan Bhangey, founder of Indulge — one of India's most sought-after luxury concierge services. Clients of this network are a highly curated UHNWI audience with complex, multi-asset wealth.</p>
+    </div>
+
+    <div class="access-card">
+      <div class="access-icon">◈</div>
+      <h4>Watch Clubs &amp; Collector Communities</h4>
+      <p>Active, personal presence within India's watch collector and luxury goods communities — a subset of HNIs known for sophisticated financial portfolios and high spending power, concentrated in Mumbai, Delhi, and Ahmedabad.</p>
+    </div>
+
+    <div class="access-card">
+      <div class="access-icon">◈</div>
+      <h4>Malabar Hill Residence &amp; Luxury Home Owners</h4>
+      <p>Existing contacts among residents of Malabar Hill — one of India's most prestigious addresses — and among luxury home owners more broadly, a direct proxy for UHNWI wealth. Not a list; known, accessible relationships.</p>
+    </div>
+
+    <div class="access-card">
+      <div class="access-icon">◈</div>
+      <h4>Bollywood, Cricket &amp; Entertainment Circles</h4>
+      <p>Countless contacts across Bollywood celebrities, cricketers, and the wider entertainment industry — actors, producers, sportspeople and creators — who manage considerable personal wealth and require sophisticated portfolio tracking tools.</p>
+    </div>
+
+    <div class="access-card">
+      <div class="access-icon">◈</div>
+      <h4>Venture Capitalists &amp; Active Investors</h4>
+      <p>Direct relationships with VC professionals and high-frequency investors managing diverse portfolios across equity, early-stage, and alternative assets — a natural fit for MProfit's advanced reporting capabilities.</p>
+    </div>
+
+  </div>
+
+  <div class="access-callout">
+    <span class="access-callout-label">The Insight</span>
+    <p>Every one of these communities shares a common profile: significant, diversified wealth — and a portfolio management challenge that MProfit solves better than anything else in the market. I already have the relationships to open these doors. What's needed is a home inside MProfit to do it properly, and at scale.</p>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- WHY NOW -->
+<section>
+  <div class="section-label">04 — Why This Opportunity Exists</div>
+  <div class="two-col">
+    <div>
+      <h2>India's wealth creation is<br>outpacing its <em>technology</em> adoption.</h2>
+    </div>
+    <div>
+      <p>India continues to see significant wealth creation through entrepreneurship, public markets, family businesses, and professional services. At the same time, premium wealth technology remains underpenetrated in Tier 1 and emerging Tier 2 cities.</p>
+      <p>Relationship-driven referrals continue to outperform cold outreach in this segment. High-value prospects expect personalised engagement — not mass marketing. This creates a precise window to build a structured acquisition capability focused on quality over volume, before the market becomes competitive.</p>
+      <p>MProfit is already the trusted platform. What is missing is a systematic, relationship-led engine to bring the right clients to it — and I am proposing to be the person who builds and runs that engine.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- ACQUISITION ENGINE -->
+<section>
+  <div class="section-label">05 — The Acquisition Engine</div>
+  <h2>A ten-stage system, not a<br><em>one-time campaign</em>.</h2>
+  <p style="max-width:640px;">The proposed operating model is a continuously improving acquisition process — not a single outreach effort. Each stage feeds the next, compounding in quality and efficiency over time.</p>
+
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="pipe-num">01</div>
+      <div class="pipe-title">Opportunity Identification</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">02</div>
+      <div class="pipe-title">Prospect Research</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">03</div>
+      <div class="pipe-title">Qualification</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">04</div>
+      <div class="pipe-title">Relationship Mapping</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">05</div>
+      <div class="pipe-title">Personalised Outreach</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">06</div>
+      <div class="pipe-title">Warm Introductions</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">07</div>
+      <div class="pipe-title">Meeting Coordination</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">08</div>
+      <div class="pipe-title">Sales Support</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">09</div>
+      <div class="pipe-title">Relationship Development</div>
+    </div>
+    <div class="pipeline-step">
+      <div class="pipe-num">10</div>
+      <div class="pipe-title">Pipeline Expansion</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- REVENUE TABLE -->
+<section>
+  <div class="section-label">06 — Revenue Scenarios</div>
+  <div class="two-col">
+    <div>
+      <h2>Illustrative scale of<br>what this <em>engine</em> can return.</h2>
+      <p>Based on MProfit's premium HNI/Family Office pricing of approximately ₹4.88 lakh per client annually, the following scenarios illustrate the pipeline potential from the existing 20,000-record prospect base alone.</p>
+      <p class="table-note">These figures illustrate potential scale only. Actual results depend on lead quality, product fit, and sales execution.</p>
+    </div>
+    <div>
+      <table class="revenue-table">
+        <thead>
+          <tr>
+            <th>Conversion Rate</th>
+            <th>Clients</th>
+            <th>Annual Contract Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.25%</td>
+            <td>50</td>
+            <td class="val">₹2.44 Cr</td>
+          </tr>
+          <tr>
+            <td>0.50%</td>
+            <td>100</td>
+            <td class="val">₹4.88 Cr</td>
+          </tr>
+          <tr class="highlight">
+            <td>1.00%</td>
+            <td>200</td>
+            <td class="val">₹9.76 Cr</td>
+          </tr>
+          <tr>
+            <td>2.00%</td>
+            <td>400</td>
+            <td class="val">₹19.52 Cr</td>
+          </tr>
+          <tr>
+            <td>5.00%</td>
+            <td>1,000</td>
+            <td class="val">₹48.80 Cr</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- COLLABORATION -->
+<section>
+  <div class="section-label">07 — Proposed Collaboration</div>
+  <h2>Not a vendor relationship.<br>A <em>strategic function</em> — and a role.</h2>
+  <p style="max-width:680px; margin-bottom:0;">Rather than treating this as an external database sale, I am proposing to join MProfit and build this as a long-term strategic capability from the inside — an embedded growth function with defined responsibilities and measurable outcomes.</p>
+
+  <div class="roles-grid">
+    <div class="role-card">
+      <h4>Lead Intelligence</h4>
+      <p>Ongoing identification and research of high-potential HNI and family office prospects across India.</p>
+    </div>
+    <div class="role-card">
+      <h4>Strategic Partnerships</h4>
+      <p>Development of referral relationships with CAs, wealth managers, advisors, and community leaders.</p>
+    </div>
+    <div class="role-card">
+      <h4>Database Expansion</h4>
+      <p>Continuous addition of qualified, contextualised records as new wealth creation events occur.</p>
+    </div>
+    <div class="role-card">
+      <h4>Outreach Strategy</h4>
+      <p>Personalised, relationship-first engagement sequences designed for the HNI segment specifically.</p>
+    </div>
+    <div class="role-card">
+      <h4>Pipeline Management</h4>
+      <p>Structured qualification, meeting coordination, and handoff to MProfit's sales team.</p>
+    </div>
+    <div class="role-card">
+      <h4>Market Intelligence</h4>
+      <p>Ongoing research into India's evolving wealth ecosystem — new founders, liquidity events, IPOs.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- LONG TERM VISION -->
+<section>
+  <div class="section-label">08 — Long-Term Vision</div>
+  <div class="two-col">
+    <div>
+      <h2>I want to <em>grow</em><br>with MProfit.</h2>
+    </div>
+    <div>
+      <p>This is not a proposal to hand over a spreadsheet and walk away. I am genuinely interested in building something long-term here — in joining MProfit professionally and scaling this acquisition function into a core part of the business.</p>
+      <p>The long-term goal is a repeatable engine that compounds in value: identifying new founders, family offices, investors, and business owners as India's wealth landscape evolves — so MProfit is always first in their consideration, not a discovery made years later.</p>
+      <p>Instead of periodically purchasing lists or relying on inbound demand alone, MProfit would have a living, continuously improving system for discovering and engaging high-potential prospects — owned and operated internally, by someone who already knows how to open these doors.</p>
+      <p>I bring operational systems thinking, a growing professional network, and a founder's understanding of how to build this from zero to scale. I am looking for the right organisation to build it <em>with</em>. I believe MProfit is that organisation — and I'd like the chance to prove it as part of the team.</p>
+    </div>
+  </div>
+
+  <div class="closing">
+    <p>The database is the starting point, not the destination. The real opportunity is <strong>Hirav Kadikar × MProfit</strong> — a long-term acquisition engine that compounds in value, expanding MProfit's reach into India's most valuable client segments through qualified relationships and disciplined execution.</p>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <strong>Hirav Kadikar</strong> &nbsp;·&nbsp; Founder &amp; Operator &nbsp;·&nbsp; hirav.me
+  </div>
+  <div class="footer-right">Project Atlas &nbsp;·&nbsp; Hirav Kadikar × MProfit &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2025</div>
+</footer>
+
+</body>
+</html>
