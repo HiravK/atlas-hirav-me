@@ -4,24 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hirav Kadikar × MProfit — Project Atlas</title>
+<meta name="description" content="Project Atlas — A strategic partnership and hiring proposal by Hirav Kadikar for MProfit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #0C0C0E;
-    --surface: #111114;
-    --panel: #17171B;
-    --border: #222228;
+    --ink: #0A0A0D;
+    --surface: #101013;
+    --panel: #151518;
+    --border: #1E1E24;
     --muted: #3A3A42;
-    --text-dim: #888896;
-    --text-body: #C8C8D4;
-    --text-head: #F0F0F8;
+    --text-dim: #7A7A8A;
+    --text-body: #B8B8C8;
+    --text-head: #EDEDF5;
     --gold: #C9A84C;
     --gold-light: #E8C87A;
-    --gold-dim: rgba(201, 168, 76, 0.12);
-    --gold-line: rgba(201, 168, 76, 0.3);
+    --gold-dim: rgba(201, 168, 76, 0.10);
+    --gold-line: rgba(201, 168, 76, 0.25);
+    --gold-glow: rgba(201, 168, 76, 0.06);
+    --rise: #5FBF8F;
+    --rise-light: #97E0BC;
+    --rise-dim: rgba(95, 191, 143, 0.12);
   }
 
   html { scroll-behavior: smooth; }
@@ -33,6 +38,8 @@
     font-size: 15px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   /* ── HEADER ── */
@@ -43,53 +50,51 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 48px;
-    background: rgba(12,12,14,0.85);
-    backdrop-filter: blur(12px);
+    padding: 18px 48px;
+    background: rgba(10,10,13,0.88);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
     border-bottom: 1px solid var(--border);
+    transition: padding 0.3s ease, background 0.3s ease;
+  }
+
+  header.scrolled {
+    padding: 12px 48px;
+    background: rgba(10,10,13,0.95);
   }
 
   .logo-pair {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-dim);
   }
 
-  .logo-pair img {
-    height: 20px;
-    width: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-    opacity: 0.92;
-  }
-
-  .logo-pair span.divider {
-    width: 18px;
-    height: 1px;
-    background: var(--gold-line);
-    display: inline-block;
+  .logo-pair strong {
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.08em;
   }
 
   .logo-pair span.cross {
-    color: var(--gold);
+    color: var(--gold-line);
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 15px;
+    font-size: 17px;
     text-transform: none;
+    opacity: 0.7;
   }
-
-  .logo-pair strong { color: var(--gold); font-weight: 500; letter-spacing: 0.1em; }
 
   .header-tag {
     font-size: 11px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-dim);
+    opacity: 0.7;
   }
 
   /* ── HERO ── */
@@ -98,7 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 120px 48px 80px;
+    padding: 140px 48px 100px;
     position: relative;
     overflow: hidden;
   }
@@ -106,39 +111,55 @@
   .hero::before {
     content: '';
     position: absolute;
-    top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    top: -300px; right: -300px;
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 65%);
     pointer-events: none;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(95,191,143,0.03) 0%, transparent 65%);
+    pointer-events: none;
+    animation: pulseGlow 10s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes pulseGlow {
+    0% { opacity: 0.6; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1.05); }
   }
 
   .hero-eyebrow {
     font-size: 11px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .hero-eyebrow::before {
     content: '';
-    width: 32px; height: 1px;
-    background: var(--gold);
+    width: 36px; height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
     display: block;
   }
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(44px, 6vw, 84px);
+    font-size: clamp(46px, 6.5vw, 88px);
     font-weight: 300;
     line-height: 1.05;
     color: var(--text-head);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     max-width: 900px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .hero h1 em {
@@ -149,62 +170,68 @@
   .hero h1 .cross-symbol {
     color: var(--gold);
     font-style: italic;
-    padding: 0 6px;
+    padding: 0 8px;
+    opacity: 0.7;
   }
 
   .hero-kicker {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-dim);
     margin-bottom: 28px;
+    opacity: 0.6;
   }
 
   .hero-subtitle {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(18px, 2.5vw, 26px);
+    font-size: clamp(19px, 2.5vw, 27px);
     font-weight: 300;
     font-style: italic;
     color: var(--text-dim);
-    margin-bottom: 48px;
+    margin-bottom: 56px;
     max-width: 640px;
+    line-height: 1.55;
   }
 
   .hero-meta {
     display: flex;
-    gap: 48px;
+    gap: 52px;
     flex-wrap: wrap;
   }
 
   .meta-item label {
     display: block;
-    font-size: 10px;
-    letter-spacing: 0.16em;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-dim);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    opacity: 0.7;
   }
 
   .meta-item span {
     font-size: 14px;
     color: var(--text-head);
     font-weight: 400;
+    letter-spacing: 0.01em;
   }
 
   /* ── SECTION BASE ── */
   section {
-    padding: 96px 48px;
+    padding: 100px 48px;
     max-width: 1100px;
     margin: 0 auto;
   }
 
   .section-label {
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    opacity: 0.85;
   }
 
   h2 {
@@ -218,14 +245,14 @@
 
   h2 em { font-style: italic; color: var(--gold-light); }
 
-  p { color: var(--text-body); line-height: 1.8; margin-bottom: 20px; }
+  p { color: var(--text-body); line-height: 1.85; margin-bottom: 20px; }
   p:last-child { margin-bottom: 0; }
 
   /* ── TWO COL ── */
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 64px;
+    gap: 72px;
     align-items: start;
   }
 
@@ -233,26 +260,31 @@
   .stats-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+    gap: 1px;
     margin: 64px 0;
+    background: var(--border);
     border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
   }
 
   .stat-cell {
-    padding: 36px 28px;
+    padding: 40px 28px;
     background: var(--panel);
-    border-right: 1px solid var(--border);
+    transition: background 0.3s ease;
   }
 
-  .stat-cell:last-child { border-right: none; }
+  .stat-cell:hover {
+    background: #1A1A1E;
+  }
 
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 300;
     color: var(--gold-light);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .stat-label {
@@ -262,35 +294,175 @@
     color: var(--text-dim);
   }
 
+  /* ── WEALTH MAP ── */
+  .map-wrap {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    margin: 56px 0 8px;
+    flex-wrap: wrap;
+  }
+
+  .map-container {
+    flex: 0 0 auto;
+    width: 440px;
+    max-width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 24px 24px 16px;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .map-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.03), transparent 70%);
+    pointer-events: none;
+  }
+
+  .map-container svg { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
+
+  .city-dot { fill: var(--gold-dim); stroke: var(--gold); stroke-width: 1.5; transition: all 0.3s ease; }
+  .city-dot--rise { fill: var(--rise-dim); stroke: var(--rise); stroke-width: 1.5; }
+  .city-ring { fill: none; stroke: var(--rise); stroke-width: 1; }
+  .city-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    fill: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+  .city-label--lead {
+    fill: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .city-label--rise {
+    fill: var(--rise-light);
+    font-weight: 500;
+  }
+  .map-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    fill: var(--rise-light);
+    letter-spacing: 0.03em;
+    opacity: 0.85;
+  }
+
+  /* Detailed India outline */
+  .india-outline {
+    fill: rgba(255,255,255,0.015);
+    stroke: var(--border);
+    stroke-width: 1;
+    stroke-linejoin: round;
+  }
+
+  .india-outline-glow {
+    fill: none;
+    stroke: rgba(201,168,76,0.06);
+    stroke-width: 3;
+    stroke-linejoin: round;
+    filter: blur(2px);
+  }
+
+  .map-legend {
+    flex: 1;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .legend-dot--gold { background: var(--gold-dim); border: 1.5px solid var(--gold); }
+  .legend-dot--rise { background: var(--rise-dim); border: 1.5px solid var(--rise); }
+
+  .rise-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+
+  .rise-table th {
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .rise-table td {
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-body);
+    font-size: 13px;
+    transition: background 0.2s ease;
+  }
+
+  .rise-table tr:last-child td { border-bottom: none; }
+  .rise-table tr:hover td { background: rgba(201,168,76,0.03); }
+
+  .rise-table .growth {
+    color: var(--rise-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+  }
+
   /* ── ACCESS GRID (strategic access & partnerships) ── */
   .access-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    gap: 1px;
     margin-top: 44px;
-    border: 1px solid var(--border);
     background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
   }
 
   .access-card {
-    padding: 32px 28px;
+    padding: 36px 28px;
     background: var(--panel);
     position: relative;
-    transition: background 0.2s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
 
-  .access-card:hover { background: #1B1B20; }
+  .access-card:hover {
+    background: #1B1B20;
+  }
 
   .access-card--featured {
-    background: linear-gradient(180deg, var(--gold-dim), var(--panel) 55%);
+    background: linear-gradient(180deg, rgba(201,168,76,0.08), var(--panel) 60%);
     border-top: 2px solid var(--gold);
   }
 
   .access-icon {
     color: var(--gold);
-    font-size: 18px;
-    margin-bottom: 16px;
-    opacity: 0.85;
+    font-size: 20px;
+    margin-bottom: 18px;
+    opacity: 0.7;
   }
 
   .access-card h4 {
@@ -299,21 +471,34 @@
     color: var(--text-head);
     letter-spacing: 0.02em;
     line-height: 1.4;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .access-card p {
     font-size: 13px;
     color: var(--text-dim);
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 0;
   }
 
   .access-callout {
-    margin-top: 2px;
-    padding: 36px 40px;
+    margin-top: 1px;
+    padding: 40px 44px;
     background: var(--panel);
     border-left: 2px solid var(--gold);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .access-callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 120px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.04), transparent);
+    pointer-events: none;
   }
 
   .access-callout-label {
@@ -322,13 +507,14 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .access-callout p {
     color: var(--text-body);
     font-size: 14px;
     margin-bottom: 0;
+    line-height: 1.85;
   }
 
   /* ── PIPELINE ── */
@@ -338,24 +524,46 @@
     gap: 0;
     margin: 48px 0;
     border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--border);
   }
 
   .pipeline-step {
-    padding: 28px 20px;
+    padding: 32px 22px;
     background: var(--panel);
     border-right: 1px solid var(--border);
     position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .pipeline-step:hover {
+    background: #1A1A1E;
   }
 
   .pipeline-step:last-child { border-right: none; }
 
+  .pipeline-step::after {
+    content: '→';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 12px;
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+  .pipeline-step:last-child::after { display: none; }
+
   .pipe-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 30px;
     color: var(--gold);
-    opacity: 0.4;
+    opacity: 0.35;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .pipe-title {
@@ -364,7 +572,7 @@
     color: var(--text-head);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
   /* ── TABLE ── */
@@ -390,11 +598,12 @@
     border-bottom: 1px solid var(--border);
     color: var(--text-body);
     font-size: 14px;
+    transition: background 0.2s ease;
   }
 
   .revenue-table tr:last-child td { border-bottom: none; }
 
-  .revenue-table tr:hover td { background: var(--panel); }
+  .revenue-table tr:hover td { background: rgba(255,255,255,0.015); }
 
   .revenue-table .highlight td {
     background: var(--gold-dim);
@@ -407,7 +616,7 @@
 
   td.val {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 21px;
     color: var(--gold-light);
     font-weight: 300;
   }
@@ -417,6 +626,7 @@
     color: var(--text-dim);
     margin-top: 16px;
     font-style: italic;
+    opacity: 0.75;
   }
 
   /* ── NETWORK TAGS ── */
@@ -428,41 +638,57 @@
   }
 
   .tag {
-    padding: 8px 16px;
+    padding: 8px 18px;
     border: 1px solid var(--border);
     font-size: 12px;
     color: var(--text-dim);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     background: var(--panel);
     white-space: nowrap;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+
+  .tag:hover {
+    border-color: var(--gold-line);
+    color: var(--gold-light);
+    background: var(--gold-dim);
   }
 
   /* ── ROLES ── */
   .roles-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    gap: 1px;
     margin-top: 40px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
   }
 
   .role-card {
-    padding: 32px 28px;
+    padding: 36px 28px;
     background: var(--panel);
-    border: 1px solid var(--border);
+    transition: background 0.3s ease;
+  }
+
+  .role-card:hover {
+    background: #1A1A1E;
   }
 
   .role-card h4 {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-head);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     letter-spacing: 0.04em;
   }
 
   .role-card p {
     font-size: 13px;
     color: var(--text-dim);
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 0;
   }
 
@@ -471,21 +697,31 @@
     background: var(--panel);
     border: 1px solid var(--border);
     border-left: 3px solid var(--gold);
-    padding: 56px 64px;
+    padding: 60px 68px;
     margin: 48px 0 0;
     position: relative;
     overflow: hidden;
+    border-radius: 2px;
   }
 
   .closing::before {
     content: '"';
     font-family: 'Cormorant Garamond', serif;
-    font-size: 240px;
+    font-size: 280px;
     color: var(--gold);
-    opacity: 0.04;
+    opacity: 0.035;
     position: absolute;
-    top: -40px; left: 32px;
+    top: -50px; left: 36px;
     line-height: 1;
+    pointer-events: none;
+  }
+
+  .closing::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 200px;
+    background: linear-gradient(90deg, rgba(201,168,76,0.04), transparent);
     pointer-events: none;
   }
 
@@ -495,8 +731,10 @@
     font-weight: 300;
     font-style: italic;
     color: var(--text-head);
-    line-height: 1.5;
+    line-height: 1.55;
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
   }
 
   .closing p strong {
@@ -508,7 +746,7 @@
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
-    padding: 36px 48px;
+    padding: 40px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -523,12 +761,6 @@
     color: var(--text-dim);
   }
 
-  .footer-left img {
-    height: 14px;
-    filter: brightness(0) invert(1);
-    opacity: 0.7;
-  }
-
   .footer-left strong { color: var(--text-body); font-weight: 500; }
 
   .footer-right {
@@ -536,6 +768,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-dim);
+    opacity: 0.7;
   }
 
   /* ── DIVIDER FULL ── */
@@ -545,15 +778,35 @@
     margin: 0;
   }
 
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     header { padding: 14px 24px; }
+    header.scrolled { padding: 10px 24px; }
     .hero { padding: 100px 24px 60px; }
     section { padding: 64px 24px; }
     .two-col { grid-template-columns: 1fr; gap: 40px; }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .access-grid { grid-template-columns: 1fr; }
+    .map-wrap { flex-direction: column; gap: 32px; }
+    .map-container { width: 100%; padding: 16px 12px 8px; }
     .pipeline { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-step::after { display: none; }
     .roles-grid { grid-template-columns: 1fr; }
     .closing { padding: 36px 28px; }
     .access-callout { padding: 28px 24px; }
@@ -562,30 +815,40 @@
 
   @media (max-width: 540px) {
     .stats-row { grid-template-columns: 1fr 1fr; }
-    .hero-meta { gap: 24px; }
+    .hero-meta { gap: 28px; }
   }
 
-  /* ── FADE IN ── */
+  /* ── HERO ANIMATION ── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(28px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .hero > * {
-    animation: fadeUp 0.8s ease both;
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  .hero > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero > *:nth-child(2) { animation-delay: 0.25s; }
-  .hero > *:nth-child(3) { animation-delay: 0.4s; }
-  .hero > *:nth-child(4) { animation-delay: 0.55s; }
-  .hero > *:nth-child(5) { animation-delay: 0.7s; }
+  .hero > *:nth-child(1) { animation-delay: 0.15s; }
+  .hero > *:nth-child(2) { animation-delay: 0.3s; }
+  .hero > *:nth-child(3) { animation-delay: 0.45s; }
+  .hero > *:nth-child(4) { animation-delay: 0.6s; }
+  .hero > *:nth-child(5) { animation-delay: 0.75s; }
+
+  /* ── GOLD LINE ACCENT ── */
+  @keyframes shimmerLine {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .full-rule {
+    position: relative;
+  }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header>
+<header id="site-header">
   <div class="logo-pair">
     <strong>Hirav Kadikar</strong>
     <span class="cross">×</span>
@@ -596,7 +859,7 @@
 
 <!-- HERO -->
 <div class="hero" style="max-width:100%; margin:0;">
-  <div class="hero-eyebrow">Confidential · Strategic Initiative</div>
+  <div class="hero-eyebrow">Confidential · Strategic Initiative · July 2026</div>
   <h1>Hirav Kadikar<span class="cross-symbol">×</span><em>MProfit</em></h1>
   <div class="hero-kicker">Project Atlas</div>
   <div class="hero-subtitle">Building MProfit's HNI Acquisition &amp; Strategic Partnerships Engine — together, from day one.</div>
@@ -624,12 +887,12 @@
 
 <!-- EXECUTIVE SUMMARY -->
 <section>
-  <div class="section-label">01 — Executive Summary</div>
+  <div class="section-label reveal">01 — Executive Summary</div>
   <div class="two-col">
-    <div>
+    <div class="reveal">
       <h2>The next phase of MProfit's growth is <em>access</em>.</h2>
     </div>
-    <div>
+    <div class="reveal reveal-delay-1">
       <p>MProfit has built India's most trusted platform for portfolio reporting, wealth accounting, and family office management. The product is exceptional. The opportunity ahead is not just product innovation — it is consistent, structured access to the right clients.</p>
       <p>This proposal outlines a long-term collaboration to build a dedicated acquisition engine focused on HNIs, UHNWIs, founders, business owners, family offices, and senior decision-makers who align with MProfit's premium offerings.</p>
       <p>I already have this — not in theory, but in hand: a working database and a set of live, personal relationships across exactly the communities MProfit is trying to reach. The objective of this proposal is to bring that access inside MProfit, as an embedded function, and build it into a compounding, repeatable acquisition system alongside the team.</p>
@@ -641,10 +904,10 @@
 
 <!-- DATABASE -->
 <section>
-  <div class="section-label">02 — Existing Foundation</div>
-  <h2>A structured intelligence<br><em>database</em>, built over years.</h2>
+  <div class="section-label reveal">02 — Existing Foundation</div>
+  <h2 class="reveal">A structured intelligence<br><em>database</em>, built over years.</h2>
 
-  <div class="stats-row">
+  <div class="stats-row reveal">
     <div class="stat-cell">
       <div class="stat-num">20K+</div>
       <div class="stat-label">Verified Records</div>
@@ -664,12 +927,12 @@
   </div>
 
   <div class="two-col">
-    <div>
+    <div class="reveal">
       <p>Over the past several years, I have built and organised a growing database of business contacts spanning India's entire entrepreneurial, investment, and ultra-high-net-worth ecosystem.</p>
       <p>Each record captures — where available — name, company, designation, industry, location, contact information, and company context. The value is not in the volume alone, but in the ability to organise, prioritise, and activate these records into meaningful opportunities for MProfit.</p>
       <p>This is not a purchased list. Every contact has been acquired through direct engagement, network building, and industry presence — which means the relationships are real and the data is current.</p>
     </div>
-    <div>
+    <div class="reveal reveal-delay-1">
       <p>The database already contains verified profiles across:</p>
       <div class="tags">
         <span class="tag">Bollywood Celebrities</span>
@@ -693,13 +956,194 @@
 
 <hr class="full-rule">
 
+<!-- WEALTH MAP -->
+<section>
+  <div class="section-label reveal">03 — Where India's Wealth Lives</div>
+  <h2 class="reveal">Mumbai still <em>dominates</em> —<br>but the next fortunes are being built in Ahmedabad, Surat &amp; Jaipur.</h2>
+  <p class="reveal" style="max-width:720px;">India's wealth remains heavily concentrated, but the map is shifting fast. Mumbai alone accounts for roughly 35% of India's ultra-high-net-worth population and around 1.42 lakh millionaire households — more than double Delhi, the next largest hub. But the real story for MProfit is what's happening below the top three metros: a second wave of wealth is forming in cities that barely registered a decade ago.</p>
+
+  <div class="map-wrap reveal">
+    <div class="map-container">
+      <svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg">
+        <!-- Detailed India outline with proper geographic shape -->
+        <defs>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background glow outline -->
+        <path class="india-outline-glow" d="
+          M205,18 L215,15 L228,17 L240,22 L248,20 L255,22 L262,18 L270,20
+          L278,25 L282,32 L290,36 L298,42 L305,48 L310,55 L318,62 L325,70
+          L335,80 L342,88 L348,95 L355,105 L360,115 L365,125 L368,135
+          L365,142 L370,150 L378,158 L385,168 L390,178 L395,188
+          L398,200 L395,210 L388,218 L380,225 L372,232 L365,240
+          L358,248 L350,255 L342,262 L335,270 L328,278
+          L320,285 L312,292 L305,300 L298,308
+          L290,318 L282,328 L275,338 L268,348
+          L260,358 L252,368 L245,378 L238,388
+          L230,398 L222,408 L215,418 L208,428
+          L200,438 L193,448 L186,458 L180,468
+          L175,478 L170,488 L165,498 L162,508
+          L160,518 L158,525 L155,530
+          L150,528 L145,522 L140,515 L135,508
+          L128,498 L122,488 L115,478 L110,468
+          L105,455 L100,442 L95,430 L90,418
+          L85,405 L80,392 L76,380 L72,368
+          L68,355 L65,342 L62,330 L60,318
+          L58,305 L57,292 L56,280 L55,268
+          L53,255 L50,242 L48,230 L50,218
+          L54,208 L58,198 L62,188 L68,178
+          L74,168 L80,158 L86,150 L92,142
+          L98,135 L104,128 L108,120 L105,112
+          L100,105 L96,98 L94,90 L96,82
+          L100,75 L108,68 L115,62 L122,56
+          L130,50 L138,44 L145,38 L152,32
+          L160,28 L168,24 L178,20 L188,18
+          L198,17 Z
+        "/>
+
+        <!-- Main India outline -->
+        <path class="india-outline" d="
+          M205,18 L215,15 L228,17 L240,22 L248,20 L255,22 L262,18 L270,20
+          L278,25 L282,32 L290,36 L298,42 L305,48 L310,55 L318,62 L325,70
+          L335,80 L342,88 L348,95 L355,105 L360,115 L365,125 L368,135
+          L365,142 L370,150 L378,158 L385,168 L390,178 L395,188
+          L398,200 L395,210 L388,218 L380,225 L372,232 L365,240
+          L358,248 L350,255 L342,262 L335,270 L328,278
+          L320,285 L312,292 L305,300 L298,308
+          L290,318 L282,328 L275,338 L268,348
+          L260,358 L252,368 L245,378 L238,388
+          L230,398 L222,408 L215,418 L208,428
+          L200,438 L193,448 L186,458 L180,468
+          L175,478 L170,488 L165,498 L162,508
+          L160,518 L158,525 L155,530
+          L150,528 L145,522 L140,515 L135,508
+          L128,498 L122,488 L115,478 L110,468
+          L105,455 L100,442 L95,430 L90,418
+          L85,405 L80,392 L76,380 L72,368
+          L68,355 L65,342 L62,330 L60,318
+          L58,305 L57,292 L56,280 L55,268
+          L53,255 L50,242 L48,230 L50,218
+          L54,208 L58,198 L62,188 L68,178
+          L74,168 L80,158 L86,150 L92,142
+          L98,135 L104,128 L108,120 L105,112
+          L100,105 L96,98 L94,90 L96,82
+          L100,75 L108,68 L115,62 L122,56
+          L130,50 L138,44 L145,38 L152,32
+          L160,28 L168,24 L178,20 L188,18
+          L198,17 Z
+        "/>
+
+        <!-- Kashmir region detail -->
+        <path class="india-outline" d="M96,82 L90,72 L85,60 L90,48 L100,40 L115,35 L130,30 L145,25 L160,20 L175,17 L188,15 L198,17 L205,18" style="stroke-dasharray: 4 3; opacity: 0.5;"/>
+
+        <!-- Established hubs -->
+        <circle class="city-dot" cx="84" cy="346" r="34"/>
+        <text class="city-label city-label--lead" x="84" y="346" text-anchor="end" dx="-40">Mumbai</text>
+
+        <circle class="city-dot" cx="180" cy="120" r="24"/>
+        <text class="city-label city-label--lead" x="180" y="108" text-anchor="middle">Delhi</text>
+
+        <circle class="city-dot" cx="170" cy="455" r="16"/>
+        <text class="city-label" x="170" y="480" text-anchor="middle">Bengaluru</text>
+
+        <circle class="city-dot" cx="345" cy="250" r="15"/>
+        <text class="city-label" x="362" y="254" text-anchor="start">Kolkata</text>
+
+        <circle class="city-dot" cx="215" cy="448" r="14"/>
+        <text class="city-label" x="215" y="470" text-anchor="middle">Chennai</text>
+
+        <circle class="city-dot" cx="100" cy="365" r="14"/>
+        <text class="city-label" x="80" y="385" text-anchor="end">Pune</text>
+
+        <circle class="city-dot" cx="190" cy="368" r="13"/>
+        <text class="city-label" x="190" y="390" text-anchor="middle">Hyderabad</text>
+
+        <!-- Rising Tier-2 cities -->
+        <circle class="city-ring" cx="82" cy="265" r="20"><animate attributeName="r" values="14;24;14" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="3s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="82" cy="265" r="15"/>
+        <text class="city-label city-label--rise" x="62" y="252" text-anchor="end">Ahmedabad</text>
+        <text class="map-badge" x="62" y="264" text-anchor="end">▲ +89% since 2021</text>
+
+        <circle class="city-ring" cx="86" cy="305" r="14"><animate attributeName="r" values="8;16;8" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.6s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="86" cy="305" r="8"/>
+        <text class="city-label city-label--rise" x="100" y="309" text-anchor="start">Surat</text>
+
+        <circle class="city-ring" cx="195" cy="130" r="12"><animate attributeName="r" values="7;14;7" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.8s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="195" cy="130" r="7"/>
+        <text class="city-label city-label--rise" x="208" y="134" text-anchor="start">Gurugram</text>
+
+        <circle class="city-ring" cx="140" cy="168" r="11"><animate attributeName="r" values="6;13;6" dur="3.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="3.2s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="140" cy="168" r="6"/>
+        <text class="city-label city-label--rise" x="125" y="160" text-anchor="end">Jaipur</text>
+
+        <circle class="city-ring" cx="95" cy="280" r="10"><animate attributeName="r" values="6;12;6" dur="2.9s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.9s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="95" cy="280" r="6"/>
+        <text class="city-label city-label--rise" x="108" y="284" text-anchor="start">Vadodara</text>
+
+        <circle class="city-ring" cx="198" cy="300" r="10"><animate attributeName="r" values="5;12;5" dur="3.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="3.4s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="198" cy="300" r="5"/>
+        <text class="city-label city-label--rise" x="213" y="304" text-anchor="start">Nagpur</text>
+
+        <circle class="city-ring" cx="230" cy="175" r="10"><animate attributeName="r" values="5;12;5" dur="3.1s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="3.1s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="230" cy="175" r="5"/>
+        <text class="city-label city-label--rise" x="245" y="179" text-anchor="start">Lucknow</text>
+
+        <circle class="city-ring" cx="268" cy="365" r="10"><animate attributeName="r" values="5;12;5" dur="2.7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="2.7s" repeatCount="indefinite"/></circle>
+        <circle class="city-dot city-dot--rise" cx="268" cy="365" r="5"/>
+        <text class="city-label city-label--rise" x="283" y="369" text-anchor="start">Vizag</text>
+      </svg>
+    </div>
+
+    <div class="map-legend">
+      <div class="legend-item"><span class="legend-dot legend-dot--gold"></span> Established wealth hub — bubble size reflects millionaire households</div>
+      <div class="legend-item"><span class="legend-dot legend-dot--rise"></span> Tier 2 / Tier 3 city climbing rapidly since 2021</div>
+      <div class="legend-item">India's millionaire households have grown roughly 5× since 2017 — from about 1.6 lakh to 8.7 lakh in 2025 — and that growth is increasingly happening outside the traditional metros.</div>
+    </div>
+  </div>
+
+  <div class="two-col reveal" style="margin-top:64px;">
+    <div>
+      <h2 style="font-size:clamp(24px,3vw,34px);">Tier 2 cities are no longer an <em>afterthought</em>.</h2>
+      <p>Ahmedabad has already overtaken Kolkata to become the 4th largest concentration of millionaire households in the country, backed by Gujarat's roughly 89% rise in millionaire households since 2021. Chennai's share of India's ultra-rich population has nearly quadrupled since 2015. Telangana, anchored by Hyderabad, has posted the fastest growth of any major state — around 138% since 2021.</p>
+      <p>Smaller centres — Surat, Jaipur, Vadodara, Nagpur, Gurugram, Lucknow and Visakhapatnam — are registering millionaire populations that simply didn't exist at this scale a decade ago. For MProfit, this is precisely the underpenetrated segment: relationship-driven, wealth-technology-hungry, and largely untouched by premium platforms still focused on Mumbai and Delhi.</p>
+    </div>
+    <div>
+      <table class="rise-table">
+        <thead>
+          <tr><th>City</th><th>Millionaire HH</th><th>Growth Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ahmedabad</td><td>~26,800</td><td class="growth">+89%*</td></tr>
+          <tr><td>Hyderabad</td><td>~19,800</td><td class="growth">+138%*</td></tr>
+          <tr><td>Gurugram</td><td>~10,100</td><td class="growth">Emerging hub</td></tr>
+          <tr><td>Surat</td><td>~5,700</td><td class="growth">Emerging hub</td></tr>
+          <tr><td>Jaipur</td><td>~4,800</td><td class="growth">Emerging hub</td></tr>
+          <tr><td>Vadodara</td><td>~4,600</td><td class="growth">Emerging hub</td></tr>
+          <tr><td>Nagpur</td><td>~3,700</td><td class="growth">Emerging hub</td></tr>
+          <tr><td>Lucknow / Vizag</td><td>~2,900 each</td><td class="growth">Emerging hub</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">*Growth figures reflect state-level millionaire household growth (Gujarat, Telangana) since 2021, per the Mercedes-Benz Hurun India Wealth Report 2025 and Knight Frank's Wealth Report 2026. City-level figures are approximate.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
 <!-- STRATEGIC ACCESS -->
 <section>
-  <div class="section-label">03 — Strategic Access &amp; Partnerships</div>
-  <h2>Beyond the database —<br><em>direct access</em> to India's wealthiest communities.</h2>
-  <p style="max-width:700px;">What separates this proposal from any conventional lead generation effort is the quality and exclusivity of relationships I already hold, personally. These are not cold introductions — they are warm, trusted channels into communities where MProfit's ideal clients already live.</p>
+  <div class="section-label reveal">04 — Strategic Access &amp; Partnerships</div>
+  <h2 class="reveal">Beyond the database —<br><em>direct access</em> to India's wealthiest communities.</h2>
+  <p class="reveal" style="max-width:700px;">What separates this proposal from any conventional lead generation effort is the quality and exclusivity of relationships I already hold, personally. These are not cold introductions — they are warm, trusted channels into communities where MProfit's ideal clients already live.</p>
 
-  <div class="access-grid">
+  <div class="access-grid reveal">
 
     <div class="access-card access-card--featured">
       <div class="access-icon">◈</div>
@@ -739,7 +1183,7 @@
 
   </div>
 
-  <div class="access-callout">
+  <div class="access-callout reveal">
     <span class="access-callout-label">The Insight</span>
     <p>Every one of these communities shares a common profile: significant, diversified wealth — and a portfolio management challenge that MProfit solves better than anything else in the market. I already have the relationships to open these doors. What's needed is a home inside MProfit to do it properly, and at scale.</p>
   </div>
@@ -749,12 +1193,12 @@
 
 <!-- WHY NOW -->
 <section>
-  <div class="section-label">04 — Why This Opportunity Exists</div>
+  <div class="section-label reveal">05 — Why This Opportunity Exists</div>
   <div class="two-col">
-    <div>
+    <div class="reveal">
       <h2>India's wealth creation is<br>outpacing its <em>technology</em> adoption.</h2>
     </div>
-    <div>
+    <div class="reveal reveal-delay-1">
       <p>India continues to see significant wealth creation through entrepreneurship, public markets, family businesses, and professional services. At the same time, premium wealth technology remains underpenetrated in Tier 1 and emerging Tier 2 cities.</p>
       <p>Relationship-driven referrals continue to outperform cold outreach in this segment. High-value prospects expect personalised engagement — not mass marketing. This creates a precise window to build a structured acquisition capability focused on quality over volume, before the market becomes competitive.</p>
       <p>MProfit is already the trusted platform. What is missing is a systematic, relationship-led engine to bring the right clients to it — and I am proposing to be the person who builds and runs that engine.</p>
@@ -766,11 +1210,11 @@
 
 <!-- ACQUISITION ENGINE -->
 <section>
-  <div class="section-label">05 — The Acquisition Engine</div>
-  <h2>A ten-stage system, not a<br><em>one-time campaign</em>.</h2>
-  <p style="max-width:640px;">The proposed operating model is a continuously improving acquisition process — not a single outreach effort. Each stage feeds the next, compounding in quality and efficiency over time.</p>
+  <div class="section-label reveal">06 — The Acquisition Engine</div>
+  <h2 class="reveal">A ten-stage system, not a<br><em>one-time campaign</em>.</h2>
+  <p class="reveal" style="max-width:640px;">The proposed operating model is a continuously improving acquisition process — not a single outreach effort. Each stage feeds the next, compounding in quality and efficiency over time.</p>
 
-  <div class="pipeline">
+  <div class="pipeline reveal">
     <div class="pipeline-step">
       <div class="pipe-num">01</div>
       <div class="pipe-title">Opportunity Identification</div>
@@ -818,14 +1262,14 @@
 
 <!-- REVENUE TABLE -->
 <section>
-  <div class="section-label">06 — Revenue Scenarios</div>
+  <div class="section-label reveal">07 — Revenue Scenarios</div>
   <div class="two-col">
-    <div>
+    <div class="reveal">
       <h2>Illustrative scale of<br>what this <em>engine</em> can return.</h2>
       <p>Based on MProfit's premium HNI/Family Office pricing of approximately ₹4.88 lakh per client annually, the following scenarios illustrate the pipeline potential from the existing 20,000-record prospect base alone.</p>
       <p class="table-note">These figures illustrate potential scale only. Actual results depend on lead quality, product fit, and sales execution.</p>
     </div>
-    <div>
+    <div class="reveal reveal-delay-1">
       <table class="revenue-table">
         <thead>
           <tr>
@@ -870,11 +1314,11 @@
 
 <!-- COLLABORATION -->
 <section>
-  <div class="section-label">07 — Proposed Collaboration</div>
-  <h2>Not a vendor relationship.<br>A <em>strategic function</em> — and a role.</h2>
-  <p style="max-width:680px; margin-bottom:0;">Rather than treating this as an external database sale, I am proposing to join MProfit and build this as a long-term strategic capability from the inside — an embedded growth function with defined responsibilities and measurable outcomes.</p>
+  <div class="section-label reveal">08 — Proposed Collaboration</div>
+  <h2 class="reveal">Not a vendor relationship.<br>A <em>strategic function</em> — and a role.</h2>
+  <p class="reveal" style="max-width:680px; margin-bottom:0;">Rather than treating this as an external database sale, I am proposing to join MProfit and build this as a long-term strategic capability from the inside — an embedded growth function with defined responsibilities and measurable outcomes.</p>
 
-  <div class="roles-grid">
+  <div class="roles-grid reveal">
     <div class="role-card">
       <h4>Lead Intelligence</h4>
       <p>Ongoing identification and research of high-potential HNI and family office prospects across India.</p>
@@ -906,12 +1350,12 @@
 
 <!-- LONG TERM VISION -->
 <section>
-  <div class="section-label">08 — Long-Term Vision</div>
+  <div class="section-label reveal">09 — Long-Term Vision</div>
   <div class="two-col">
-    <div>
+    <div class="reveal">
       <h2>I want to <em>grow</em><br>with MProfit.</h2>
     </div>
-    <div>
+    <div class="reveal reveal-delay-1">
       <p>This is not a proposal to hand over a spreadsheet and walk away. I am genuinely interested in building something long-term here — in joining MProfit professionally and scaling this acquisition function into a core part of the business.</p>
       <p>The long-term goal is a repeatable engine that compounds in value: identifying new founders, family offices, investors, and business owners as India's wealth landscape evolves — so MProfit is always first in their consideration, not a discovery made years later.</p>
       <p>Instead of periodically purchasing lists or relying on inbound demand alone, MProfit would have a living, continuously improving system for discovering and engaging high-potential prospects — owned and operated internally, by someone who already knows how to open these doors.</p>
@@ -919,7 +1363,7 @@
     </div>
   </div>
 
-  <div class="closing">
+  <div class="closing reveal">
     <p>The database is the starting point, not the destination. The real opportunity is <strong>Hirav Kadikar × MProfit</strong> — a long-term acquisition engine that compounds in value, expanding MProfit's reach into India's most valuable client segments through qualified relationships and disciplined execution.</p>
   </div>
 </section>
@@ -931,8 +1375,39 @@
   <div class="footer-left">
     <strong>Hirav Kadikar</strong> &nbsp;·&nbsp; Founder &amp; Operator &nbsp;·&nbsp; hirav.me
   </div>
-  <div class="footer-right">Project Atlas &nbsp;·&nbsp; Hirav Kadikar × MProfit &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2026</div>
+  <div class="footer-right">Project Atlas &nbsp;·&nbsp; Hirav × MProfit &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2026</div>
 </footer>
+
+<script>
+  // Header shrink on scroll
+  const header = document.getElementById('site-header');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    lastScroll = y;
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+</script>
 
 </body>
 </html>
